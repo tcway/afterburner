@@ -1,0 +1,111 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %>- AfterBurner Media</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder runat="server">
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.5.3.js") %>"></script>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+            </Scripts>
+        </asp:ScriptManager>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">
+                        <a runat="server" href="~/">
+                            <img src="Images/AfterBurner.jpg" /></a>
+                    </p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        <asp:LoginView runat="server" ViewStateMode="Disabled">
+                            <AnonymousTemplate>
+                                <ul>
+                                    <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
+                                    <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                                </ul>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <p>
+                                    Hello, <a runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
+                                        <asp:LoginName runat="server" CssClass="username" />
+                                    </a>!
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                                </p>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </section>
+                    <nav>
+                        <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" CssClass="menu">
+                            <DynamicHoverStyle Font-Bold="True" />
+                            <DynamicMenuItemStyle Font-Bold="True" />
+                            <DynamicMenuStyle BackColor="White" />
+                            <Items>
+                                <asp:MenuItem Text="Home" Value="Home" NavigateUrl="Default.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="About" Value="About" NavigateUrl="About.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Info & Pricing" Value="Info & Pricing" NavigateUrl="Pricing.aspx">
+                                    <asp:MenuItem Text="Video Transfer" Value="Video Transfer" NavigateUrl="VideoTransfer.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="Audio Transfer" Value="Audio Transfer" NavigateUrl="AudioTransfer.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="Disc Copying & Printing" Value="Disc Copying & Printing" NavigateUrl="Disc.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="Audio & Video Editing" Value="Audio & Video Editing" NavigateUrl="Editing.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="Still Photo Services" Value="Still Photo Services" NavigateUrl="Still.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="Home Movie Transfer" Value="Home Movie Transfer" NavigateUrl="HomeMovie.aspx"></asp:MenuItem>                  
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="Testimonials" Value="Testimonials" NavigateUrl="Testimonials.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Order" Value="Order" NavigateUrl="Order.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Contact Us" Value="Contact Us" NavigateUrl="Contact.aspx"></asp:MenuItem>
+                            </Items>
+                            <StaticHoverStyle Font-Bold="True" />
+                            <StaticMenuItemStyle HorizontalPadding="10px" Font-Bold="True" Font-Size="Larger" ForeColor="Black" />
+                            <StaticMenuStyle CssClass="Menu" HorizontalPadding="10px" />
+                        </asp:Menu>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>
+                        &copy; <%: DateTime.Now.Year %> - Tyler Gennarelli
+                    </p>
+                </div>
+            </div>
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style ">
+                <a class="addthis_button_tweet"></a>
+                <a class="addthis_button_pinterest_pinit"></a>
+                <a class="addthis_counter addthis_pill_style"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = { "data_track_addressbar": true };</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-530ee6fb14c0379a"></script>
+            <!-- AddThis Button END -->
+
+            <b>Policy:</b> AfterBurner Media won't accept jobs that involve the duplication of copyrighted materials. Nor will we accept jobs involving editing, duplicating or printing of illegal or pornographic material of any kind. AfterBurner Media also reserves the right to reject any project that does not meet its standards of legality, morality and decency.<br />
+            <b>Disclaimer:</b> Due to the fragile nature of video, film, tape and digital media, AfterBurner Media cannot be held liable for damage to any media provided by the customer for a given project. We will take the utmost care to make sure that your media is not damaged. However, each customer assumes the risk that their media can be damaged. By turning media over to AfterBurner Media, customers have released AfterBurner Media from any liability for damages.
+
+        </footer>
+    </form>
+</body>
+</html>
